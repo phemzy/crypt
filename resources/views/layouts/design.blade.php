@@ -8,9 +8,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Megakit - HTML5 Theme</title>
-        <meta name="keywords" content="HTML5 Theme" />
-        <meta name="description" content="Megakit - HTML5 Theme">
-        <meta name="author" content="keenthemes.com">
+        <meta name="description" content="Crypto2Naira is a platform dedicated specifically towards the conversion of cryptocurrencies to the Nigerian 'naira'. It achieves that through a recurrent mutual obligation between registered members.">
+
+        <meta name="description" content="Sell you TBC here on Crypto2Naira. We allow you exchange your TBC for naira all free of charge.">
+        <meta name="description" content="Sell your Greycoin GRC on Crypto2Naira without any stress.">
+
+        <meta name="keywords" content="TBC, GRC, Cryptocurrencies, Sell TBC, Sell GRC, Convert TBC to Naira, Convert GRC to naira, Convert cryptocurrency to naira, How to sell TBC in naira, How to convert TBC to  naira, Convert GRC to naira, The Billion Coin, Greycoin, Sell The Billion Coin, Sell Greycoin" />
+
+        <meta name="robots" content="index,follow" />
+
+        <meta name="author" content="Crypto2Naira">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <meta property="og:url" content="{{ url('/') }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Crypto2Naira" />
+        <meta property="og:description" content="Crypto2Naira is a platform dedicated specifically towards the conversion of cryptocurrencies to the Nigerian 'naira'. It achieves that through a recurrent mutual obligation between registered members." />
+
+        <meta property="og:image" content="{{ URL::to('img/crypto.png') }}" />
 
         <!-- Web Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet">

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'first_name', 'last_name'
+        'username', 'email', 'password', 'first_name', 'last_name', 'affiliate_id', 'referred_by'
     ];
 
     /**
@@ -28,6 +28,11 @@ class User extends Authenticatable
     ];
 
     protected $appends = ['markets'];
+
+    public function testimonies()
+    {
+        return $this->hasMany(Testimony::class);
+    }
 
     public function hasCompletedProfile()
     {

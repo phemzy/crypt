@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -51,7 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'username' => 'required|string|max:255|unique:users,username',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
             'tnc' => 'required',
         ]);
     }
@@ -73,8 +74,28 @@ class RegisterController extends Controller
         $user->profile()->create([]);
         $user->account()->create([]);
 
-        //$user->notify(new ThanksForSigningUp($user));
+        $user->notify(new ThanksForSigningUp($user));
 
         return $user;
+    }
+
+    protected function registerUser()
+    {
+        $this->validate(request(), [
+            'username' => 'required|string|max:255|unique:users,username',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
+
+        $user = User::create(['username' => request('username'), 'email' => request('email'), 'password' => bcrypt(request('password')), 'affiliate_id' => uniqid() . str_random(4)]);
+
+        $user->profile()->create([]);
+        $user->account()->create([]);
+
+        Auth::login($user);
+
+        $user->notify(new ThanksForSigningUp($user));
+
+        return redirect('/next-step');
     }
 }

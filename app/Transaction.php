@@ -55,4 +55,9 @@ class Transaction extends Model
     {
         return $this->status == 'failed';
     }
+
+    public function testimony()
+    {
+        return $this->hasOne(Testimony::class);
+    }
 }

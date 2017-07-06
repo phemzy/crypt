@@ -1,399 +1,297 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ config('app.locale') }}"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="msvalidate.01" content="0B5CD89A38DA7B73FF14CBD6FA0B8C52" />
+@extends('layouts.design')
 
-    <title>Crypto To Naira</title>
+@section('content')
 
-    <meta name="description" content="Crypto2Naira is a platform dedicated specifically towards the conversion of cryptocurrencies to the Nigerian 'naira'. It achieves that through a recurrent mutual obligation between registered members.">
-
-    <meta name="description" content="Sell you TBC here on Crypto2Naira. We allow you exchange your TBC for naira all free of charge.">
-    <meta name="description" content="Sell your Greycoin GRC on Crypto2Naira without any stress.">
-
-    <meta name="keywords" content="TBC, GRC, Cryptocurrencies, Sell TBC, Sell GRC, Convert TBC to Naira, Convert GRC to naira, Convert cryptocurrency to naira, How to sell TBC in naira, How to convert TBC to  naira, Convert GRC to naira, The Billion Coin, Greycoin, Sell The Billion Coin, Sell Greycoin" />
-
-    <meta name="robots" content="index,follow" />
-
-    <meta name="author" content="Crypto2Naira">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <meta property="og:url" content="{{ url('/') }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Crypto2Naira" />
-    <meta property="og:description" content="Crypto2Naira is a platform dedicated specifically towards the conversion of cryptocurrencies to the Nigerian 'naira'. It achieves that through a recurrent mutual obligation between registered members." />
-    <meta property="og:image" content="{{ URL::to('img/logo_big.jpg') }}" />
-    <link rel="stylesheet" href="css/normalize.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.css">
-    <link rel="stylesheet" href="css/flexslider.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/queries.css">
-    <link rel="stylesheet" href="css/etline-font.css">
-    <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    <link rel="stylesheet" href="{{ URL::to('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
-    <style>
-        .header-content img{
-            max-height: 30px !important;
-            margin-bottom: 0 !important;
-            padding-bottom: 0 !important;
-        }
-        .crypto-img {
-            max-height: auto;
-            max-width: 60px;
-            padding-right: 10px;
-            border: 5px;
-        }
-    </style>
-</head>
-<body id="top">
-   <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=131864197384076";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <!--[if lt IE 8]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <section class="hero">
-        <section class="navigation">
-            <header>
-                <div class="header-content">
-                    <div class="logo"><a href="#"><img src="img/logo_bg.png" alt="Sedna logo"></a></div>
-                    <div class="header-nav">
-                        <nav>
-                            <ul class="primary-nav">
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#cryptos">Basic Cryptos</a></li>
-                                <li><a href="#subscribe">Subscribe</a></li>
-                                <li><a href="#how-it-works">Basic Operations</a></li>
-                                <li><a href="#testimonials">Testimonials</a></li>
-                                <li><a href="{{ route('faq') }}">FAQs</a></li>
-                            </ul>
-                            
-
-                            
-                            <ul class="member-actions">
-                                @if(Auth::check())
-                                <li><a href="/home" class="login">Dashboard</a></li>
-                                <li><a href="{{ route('logout') }}" class="btn-white btn-small" onclick="event.preventDefault(); document.getElementById('logout').submit()">Logout</a>
-                                    <form action="{{ route('logout') }}" method="post" id="logout">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                                @else
-                                <li><a href="login" class="login">Log in</a></li>
-                                <li><a href="register" class="btn-white btn-small">Sign up</a></li>
-                                @endif
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="navicon">
-                        <a class="nav-toggle" href="#"><span></span></a>
-                    </div>
-                </div>
-            </header>
-        </section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="hero-content text-center">
-                        <h1>Buy, Sell, Grow!</h1>
-                        <p class="intro">Introducing <b>“Crypto To Naira”</b>. A platform for buying and selling of cryptocurrencies in <b>NAIRA</b>.</p>
-                        <a href="#get-started" class="btn btn-fill btn-large btn-margin-right">Get Started</a> <a href="#how-it-works" class="btn btn-accent btn-large">How it works</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="down-arrow floating-arrow"><a ><i class="fa fa-angle-down"></i></a></div>
-    </section>
-    <section class="intro section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 intro-feature">
-                    <div class="intro-icon">
-                        <span data-icon="&#xe033;" class="icon"></span>
-                    </div>
-                    <div class="intro-content">
-                        <h5>TBC</h5>
-                        <p>                            
-                            TBC is one of the fastest rising cryptocurrencies in the world and we belive in its potentials and its large market share. We accept the exchange of TBC for naira at its official market price which at the moment is <b>&#8358;{{ number_format(App\Market::where('abbr_name', 'TBC')->first()->naira_value, 2)  }}</b>. Register now and start selling your TBC.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 intro-feature">
-                    <div class="intro-icon">
-                        <span data-icon="&#xe030;" class="icon"></span>
-                    </div>
-                    <div class="intro-content">
-                        <h5>GRC</h5>
-                        <p>GRC (Greycoin) is another cryptocurrency which has its root from a Nigerian wealth generation platform, GiversForum. It is rising fast and has great potentials. The current rate is 1GRC = &#8358;1</p>
-                    </div>
-                </div>
-                <div class="col-md-4 intro-feature">
-                    <div class="intro-icon">
-                        <span data-icon="&#xe046;" class="icon"></span>
-                    </div>
-                    <div class="intro-content last">
-                        <h5>ASBOLUTELY FREE</h5>
-                        <p>No extra charges; No special fee; No incurement; COMPLETELY FREE</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="features section-padding" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-7">
-                    <div class="feature-list">
-                        <h3 id="about-crypto2naira">About Crypto To Naira</h3>
-                        <p>
-                            Crypto To Naira is a platform dedicated specifically towards the conversion of cryptocurrencies to the Nigerian 'naira'. It achieves that through a recurrent mutual obligation between registered members.
-                        </p>
-                        <ul class="features-stack">
-                            <li class="feature-item">
-                                <div class="feature-icon">
-                                    <span class="icon"><i class="fa fa-recycle"></i></span>
-                                </div>
-                                <div class="feature-content">
-                                    <h5>Recurring buying and selling</h5>
-                                    <p>Crypto To Naira features a looping buying and selling process which connects all eligible participants and reassures a maximum coverage for everyone.</p>
-                                </div>
-                            </li>
-                            <li class="feature-item">
-                                <div class="feature-icon">
-                                    <span class="icon"><i class="fa fa-users"></i></span>
-                                </div>
-                                <div class="feature-content">
-                                    <h5>Users First Inclination</h5>
-                                    <p>
-                                        We painstakingly take account of all site engagements, activities and crypto integrations, allowing a seamless experience for all of our users with their various cryptocurrencies.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="feature-item">
-                                <div class="feature-icon">
-                                    <span class="icon"><i class="fa fa-lock"></i></span>
-                                </div>
-                                <div class="feature-content">
-                                    <h5>Maximum Security</h5>
-                                    <p>Both your cash and your cryptos are 100% secured! You remain incharge of whatever belongs to you. No third party.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="device-showcase">
-            <div class="devices">
-                <div class="ipad-wrap wp1"></div>                
-            </div>
-        </div>
-        <div class="responsive-feature-img"><img src="img/crypto.png" alt="responsive devices"></div>
-    </section>
-    <section class="features-extra section-padding" id="cryptos">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="feature-list">
-                        <h3>We deal with CRYPTOS!</h3>
-                        <p>
-                            <img src="img/tbc.png" alt="" class="crypto-img">THE BILLION COIN (TBC)
-                        </p>
-                        <p>
-                            <img src="img/btc.png" alt="" class="crypto-img">BITCOIN (BTC)
-                        </p>
-                        <p>
-                            <img src="img/greycoin.png" alt="" class="crypto-img">GREYCOIN (GRC)
-                        </p>
-                        <a href="{{ route('faq') }}" class="btn btn-ghost btn-accent btn-small">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="macbook-wrap wp3"></div>
-        <div class="responsive-feature-img"><img src="img/logo.png" alt="responsive devices"></div>
-    </section>
-    <section class="hero-strip section-padding" id="subscribe">
-        <div class="container">
-            <div class="sign-up col-md-12 text-center">
-                <h2>
-                Stay updated on our news, market trends and campaigns 
-                </h2>
-                <p>Enter your email below to subscribe</p>
-                <div class="col-md-6 col-md-offset-3">
-                    <form class="signup-form" action="{{ route('subscribe') }}" method="POST" role="form">
-                        {{ csrf_field() }}
-                        <div class="form-input-group{{ $errors->first('name') ? ' has-error' : ''}}" >
-                           <input type="text" class="" placeholder="Enter your name" name="name" required>
-                           @if($errors->first('name'))
-                                <span class="help-block">{{ $errors->first('name') }}</span>
-                            @endif
+        <!--========== PROMO BLOCK ==========-->
+        <div class="s-promo-block-v1 g-bg-color--primary-to-blueviolet-ltr g-fullheight--md">
+            <div class="container g-ver-center--md g-padding-y-100--xs">
+                <div class="row g-hor-centered-row--md g-margin-t-30--xs g-margin-t-20--sm">
+                    <div class="col-lg-6 col-sm-6 g-hor-centered-row__col g-text-center--xs g-text-left--md g-margin-b-60--xs g-margin-b-0--md">
+                        <div class="s-promo-block-v1__square-effect g-margin-b-60--xs text-center">
+                            <h1 class="g-font-size-32--xs g-font-size-45--sm g-font-size-50--lg g-color--white">Nigeria's Topmost<br>Crypto Exchanger</h1>
+                            <p class="g-font-size-20--xs g-font-size-26--md g-color--white g-margin-b-0--xs">TBC | GRC | BTC</p>
                         </div>
-                        <div class="form-input-group{{ $errors->first('email') ? ' has-error' : ''}}">
-                            <input type="text" class="" name="email" placeholder="Enter your email" required>
-                            @if($errors->first('email'))
-                                <span class="help-block">{{ $errors->first('email') }}</span>
-                            @endif
-                        </div>
-                        <button type="submit" class="btn btn-fill btn-danger btn-ghost btn-accent btn-large">Subscribe</button>
-                    </form>
-                </div>
-                
-                <div class="logo-placeholder floating-logo"><img src="img/logo1.png" alt="Sketch Logo"></div>
-            </div>
-        </div>
-    </section>
-    <section class="blog-intro section-padding" id="how-it-works">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>How we run...</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
-                    <h5>1. <a href="">Register</a> and Choose your preffered market!</h5>
-                    <p>
-                        In ten seconds you're up and running. The process is just a cinch! Whether you have bitcoin and you'll like to join the bitcoin market or you have the billion coin (TBC) and you'll like to join the TBC market, or both, it's all a seamless experience for you. 
-                    </p>
-                    <p>
-                        <a href="" class="btn btn-ghost btn-accent">Register</a> now!
-                    </p>
-                </div>
-                <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
-                    <h5>2. Select your preferred package and get started!</h5>
-                    <p>Wondering what's next?</p>
-                    <p>
-                        We allow you buy or sell your cryptos in a procedural process. We have broken down different packages for simplicity and ease of interactivity. Just choose your preferred package and you're good to go. NO worries!
-                    </p>
-                </div>
-                <div class="col-xs-12 text-center">
-                    <h3 class="text-center" style="margin-bottom: 10px;">Need more info?</h3>
-                    <a href="{{ route('faq') }}" class="btn btn-fill btn-lg btndanger">Click Here</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="testimonial-slider section-padding text-center" id="testimonials">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="flexslider">
-                        <ul class="slides">
-                            <li>
-                                
-                                <h2>"Never knew how rich I was until I found out Crypto2Naira existed"</h2>
-                                <p class="author">Falana Korede, Trader.</p>
-                            </li>
-                            <li>
-                                
-                                <h2>"The best platform for selling cryptocurrencies. Keep it up guys"</h2>
-                                <p class="author">Ezinne Jane, Student</p>
-                            </li>
-                            <li>
-                                
-                                <h2>"Wish I had found out about Crypto2naira earlier; What an amazing service."</h2>
-                                <p class="author">Mark Ehis, Business Man</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="sign-up section-padding text-center" id="get-started">
-        <div class="container">
-            <div class="row">
-			<iframe width="700" height="315" src="https://www.youtube.com/embed/xcYNJk0bFGw" frameborder="0" allowfullscreen></iframe>
-			<br><br>
-                <div class="col-md-6 col-md-offset-3">
-                    <h3>Get started with Crypto To Naira, absolutely free</h3>
-                        <a href="register" class="btn btn-large btn-fill sign-up-btn">Click here to sign up for free</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="to-top">
-        <div class="container">
-            <div class="row">
-                <div class="to-top-wrap">
-                    <a href="#top" class="top"><i class="fa fa-angle-up"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="footer-links">
-                        <ul class="footer-group">
-                            <li><a href="support/FAQs#contact">Contact Us</a></li>
-                            <li><a href="{{ route('faq') }}">FAQs</a></li>
+                        <span class="g-display-block--xs g-display-inline-block--lg g-margin-b-10--xs g-margin-b-10--lg">
                             @if(Auth::check())
-                            <li><a href="/home">Dashboard</a></li>
+                            <a href="{{ route('home') }}" class="s-btn s-btn--xs s-btn--white-brd g-padding-x-30--xs g-radius--50">
+                                <span class="s-btn__element--left">
+                                    <i class="g-font-size-32--xs ti-user"></i>
+                                </span>
+                                <span class="s-btn__element--right g-padding-x-10--xs">
+                                    <span class="g-display-block--xs g-font-size-11--xs">Hello, {{ Auth::user()->first_name }}</span>
+                                    <span class="g-font-size-16--xs">Visit Dashboard</span>
+                                </span>
+                            </a>
                             @else
-                            <li><a href="login">Log in</a></li>
-                            <li><a href="register">Sign up</a></li>
+                            <a href="{{ route('login') }}" class="s-btn s-btn--xs s-btn--white-brd g-padding-x-30--xs g-radius--50">
+                                <span class="s-btn__element--left">
+                                    <i class="g-font-size-32--xs ti-user"></i>
+                                </span>
+                                <span class="s-btn__element--right g-padding-x-10--xs">
+                                    <span class="g-display-block--xs g-font-size-11--xs">Have an account?</span>
+                                    <span class="g-font-size-16--xs">Login</span>
+                                </span>
+                            </a>
                             @endif
-                        </ul>
-                        <p>Copyright © 2017 <a href="/">CrypToNaira</a><br>
+                        </span>
+                        <span class="g-padding-x-0--xs g-padding-x-10--lg">
+                            <a href="https://julyflashsales.crypto2naira.com" class="s-btn s-btn--xs s-btn--white-brd g-padding-x-30--xs g-radius--50">
+                                <span class="s-btn__element--left">
+                                    <i class="g-font-size-32--xs ti-shopping-cart-full"></i>
+                                </span>
+                                <span class="s-btn__element--right g-padding-x-10--xs">
+                                    <span class="g-display-block--xs g-font-size-11--xs">Flash sale is here!</span>
+                                    <span class="g-font-size-16--xs">Go to the store!</span>
+                                </span>
+                            </a>
+                        </span>
                     </div>
-                </div>
-                <div class="social-share">
-                    <p>Share CrypToNaira with your friends</p>
-                    <div class="fb-share-button" data-href="https://crypto2naira.com" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcrypto2naira.com%2F&amp;src=sdkpreparse">Share</a></div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4 col-sm-4 g-hor-centered-row__col">
+                        <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".1s">
+                            <form class="center-block g-width-350--xs g-bg-color--white-opacity-lightest g-box-shadow__blueviolet-v1 g-padding-x-40--xs g-padding-y-60--xs g-radius--4" method="post" action="{{ route('register.user') }}">
+                            {{ csrf_field() }}
+                                <div class="g-text-center--xs g-margin-b-40--xs">
+                                    <h2 class="g-font-size-30--xs g-color--white">Signup for Free</h2>
+                                </div>
+                                <div class="g-margin-b-30--xs{{ $errors->first('email') ? ' has-error' : '' }}">
+                                    <input type="email" class="form-control s-form-v3__input" placeholder="* Email" name="email" value="{{ old('email') }}">
+                                    @if($errors->first('email'))
+                                        <span class="help-block">{{ $errors->first('email') }}</span>
+                                    @endif
+                                </div>
+                                <div class="g-margin-b-30--xs{{ $errors->first('username') ? ' has-error' : '' }}">
+                                    <input type="text" class="form-control s-form-v3__input" placeholder="* Username" name="username" value="{{ old('username') }}">
+                                    @if($errors->first('username'))
+                                        <span class="help-block">{{ $errors->first('username') }}</span>
+                                    @endif
+                                </div>
+                                <div class="g-margin-b-30--xs{{ $errors->first('password') ? ' has-error' : '' }}">
+                                    <input type="password" class="form-control s-form-v3__input" placeholder="* Password" name="password">
+                                    @if($errors->first('password'))
+                                        <span class="help-block">{{ $errors->first('password') }}</span>
+                                    @endif
+                                </div>
+                                <div class="g-text-center--xs">
+                                    <button type="submit" class="text-uppercase btn-block s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Signup</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-    <script src="bower_components/retina.js/dist/retina.js"></script>
-    <script src="js/jquery.fancybox.pack.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="js/jquery.flexslider-min.js"></script>
-    <script src="bower_components/classie/classie.js"></script>
-    <script src="bower_components/jquery-waypoints/lib/jquery.waypoints.min.js"></script>
-    <script src="{{ URL::to('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            @if(session()->has('success'))
-                swal({
-                    type: 'success',
-                    title: "{{ session('success') }}"
-                })
-            @endif
-            @if(session()->has('error'))
-                swal({
-                    type: 'error',
-                    title: "{{ session('error') }}"
-                })
-            @endif
-        </script>
-    <script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-    </script>
-</body>
-</html>
+        <!--========== END PROMO BLOCK ==========-->
+
+        <!--========== PAGE CONTENT ==========-->
+        <!-- Mockup -->
+        <div id="js__scroll-to-section" class="container g-padding-y-80--xs g-padding-y-125--xsm">
+            <div class="row g-hor-centered-row--md g-row-col--5 g-margin-b-80--xs g-margin-b-100--md">
+                <div class="col-sm-5 g-hor-centered-row__col">
+                    <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">About</p>
+                    <h2 class="g-font-size-32--xs g-font-size-36--sm g-margin-b-25--xs">Crypto2Naira</h2>
+                    <p class="g-font-size-18--sm">Crypto To Naira is a platform dedicated specifically towards the conversion of cryptocurrencies to the Nigerian 'naira'. It achieves that through a recurrent mutual obligation between registered members.</p>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5 g-hor-centered-row__col">
+                    <img class="img-responsive" src="{{ URL::to('images/market.jpeg') }}" alt="Mockup Image">
+                </div>
+            </div>
+            <div class="row g-hor-centered-row--md g-row-col--5">
+                <div class="col-sm-5 col-sm-push-7 g-hor-centered-row__col">
+                    <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">Smooth and Easy</p>
+                    <h2 class="g-font-size-32--xs g-font-size-36--sm g-margin-b-25--xs">Recurring buying and selling</h2>
+                    <p class="g-font-size-18--sm">Crypto To Naira features a looping buying and selling process which connects all eligible participants and reassures a maximum coverage for everyone.</p>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5 col-sm-pull-7 g-hor-centered-row__col g-text-left--xs g-text-right--md">
+                    <img class="img-responsive" src="{{ URL::to('images/ex.jpeg') }}" alt="Mockup Image">
+                </div>
+            </div>
+        </div>
+        <!-- End Mockup -->
+
+        <!-- Video -->
+        <section class="s-video__bg" data-vidbg-bg="mp4: include/media/mp4_video.mp4, webm: include/media/webm_video.webm, poster: include/media/fallback.jpg" data-vidbg-options="loop: true, muted: true, overlay: false">
+            <div class="container g-position--overlay g-text-center--xs">
+                <div class="g-padding-y-50--xs g-margin-t-50--xs g-margin-t-100--sm g-margin-b-100--xs g-margin-b-250--md">
+                    <h2 class="g-font-size-36--xs g-font-size-50--sm g-font-size-60--md g-color--white">Raising Billionaires,</h2>
+                    <h2 class="g-font-size-36--xs g-font-size-50--sm g-font-size-60--md g-color--white">With Cryptocurrencies.</h2>
+                </div>
+            </div>
+        </section>
+        <!-- End Video -->
+        
+        <!-- Mockup -->
+        <div class="container g-margin-t-o-100--xs g-margin-t-o-230--md">
+            <div class="center-block s-mockup-v1">
+                <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".1s">
+                    <img class="img-responsive" src="{{ URL::to('images/saved.png') }}" alt="Mockup Image">
+                </div>
+            </div>
+        </div>
+        <!-- End Mockup -->
+
+{{--         <!-- Portfolio -->
+        <div class="container g-padding-y-80--xs g-padding-y-125--xsm">
+            <div class="row g-margin-b-30--xs">
+                <div class="col-sm-4">
+                    <div class="g-margin-t-20--md g-margin-b-40--xs">
+                        <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">Branding Work</p>
+                        <h2 class="g-font-size-32--xs g-font-size-36--md">Projects</h2>
+                        <p>We are masters of most current technologies.<br>Check us out and enjoy things that we know we're good at.</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-8">
+                    <!-- Portfolio Gallery -->
+                    <div id="js__grid-portfolio-gallery" class="s-portfolio__paginations-v1 cbp">
+                        @foreach($ps as $p)
+                        <!-- Item -->
+                        <div class="s-portfolio__item cbp-item logos">
+                            <div class="s-portfolio__img-effect">
+                                <img src="{{ URL::to('asset/img/970x647/07.jpg') }}" alt="Portfolio Image">
+                            </div>
+                            <div class="s-portfolio__caption-hover--cc">
+                                <div class="g-margin-b-25--xs">
+                                    <h4 class="g-font-size-18--xs g-color--white g-margin-b-5--xs">Portfolio Item</h4>
+                                    <p class="g-color--white-opacity">by KeenThemes Inc.</p>
+                                </div>
+                                <ul class="list-inline g-ul-li-lr-5--xs g-margin-b-0--xs">
+                                    <li>
+                                        <a href="img/970x647/07.jpg" class="cbp-lightbox s-icon s-icon--sm s-icon--white-bg g-radius--circle" data-title="Portfolio Item <br/> by KeenThemes Inc.">
+                                            <i class="ti-fullscreen"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" class="s-icon s-icon--sm s-icon s-icon--white-bg g-radius--circle">
+                                            <i class="ti-link"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <!-- End Portfolio Gallery -->
+                </div>
+            </div>
+        </div>
+        <!-- End Portfolio -->
+ --}}
+        <!-- Plan -->
+        <div class="g-bg-color--sky-light">
+            <div class="container g-padding-y-80--xs g-padding-y-125--xsm">
+                <div class="g-text-center--xs g-margin-b-80--xs">
+                    <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">How does it work?</p>
+                    <h2 class="g-font-size-32--xs g-font-size-36--md">Just three (3) Steps</h2>
+                </div>
+
+                <div class="row g-row-col--5">
+                    <!-- Plan -->
+                    <div class="col-md-4 g-margin-b-10--xs g-margin-b-0--lg">
+                        <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".1s">
+                            <div class="s-plan-v1 g-text-center--xs g-bg-color--white g-padding-y-100--xs">1
+                                <i class="g-display-block--xs g-font-size-40--xs g-color--primary g-margin-b-30--xs ti-archive"></i>
+                                <h3 class="g-font-size-18--xs g-color--primary g-margin-b-30--xs">Register</h3>
+                                <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-40--xs">
+                                    <li><i class="g-font-size-13--xs g-color--primary g-margin-r-10--xs ti-check"></i>It takes only 5 seconds to register.</li>
+                                    <li><i class="g-font-size-13--xs g-color--primary g-margin-r-10--xs ti-check"></i> And that is all you need!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Plan -->
+
+                    <!-- Plan -->
+                    <div class="col-md-4 g-margin-b-10--xs g-margin-b-0--lg">
+                        <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".2s">
+                            <div class="s-plan-v1 g-text-center--xs g-bg-color--white g-padding-y-100--xs">2
+                                <i class="g-display-block--xs g-font-size-40--xs g-color--primary g-margin-b-30--xs ti-package"></i>
+                                <h3 class="g-font-size-18--xs g-color--primary g-margin-b-30--xs">Buy</h3>
+                                <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-40--xs">
+                                    <li><i class="g-font-size-13--xs g-color--primary g-margin-r-10--xs ti-check"></i> Visit your preferred market.</li>
+                                    <li><i class="g-font-size-13--xs g-color--primary g-margin-r-10--xs ti-check"></i> Buy any package of your choice.</li>
+                                    <li><i class="g-font-size-13--xs g-color--primary g-margin-r-10--xs ti-check"></i> Then get ready for the big one!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Plan -->
+                    
+                    <!-- Plan -->
+                    <div class="col-md-4">
+                        <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".3s">
+                            <div class="s-plan-v1 g-text-center--xs g-bg-color--white g-padding-y-100--xs">3
+                                <i class="g-display-block--xs g-font-size-40--xs g-color--primary g-margin-b-30--xs ti-gift"></i>
+                                <h3 class="g-font-size-18--xs g-color--primary g-margin-b-30--xs">Sell and Sell</h3>
+                                <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-40--xs">
+                                    <li><i class="g-font-size-13--xs g-color--primary g-margin-r-10--xs ti-check"></i> Done buying? </li>
+                                    <li><i class="g-font-size-13--xs g-color--primary g-margin-r-10--xs ti-check"></i> Sell double of whatever you buy.</li>
+                                    <li><i class="g-font-size-13--xs g-color--primary g-margin-r-10--xs ti-check"></i> Quick, Easy, Hassle-free.</li>
+                                    <li><i class="g-font-size-13--xs g-color--primary g-margin-r-10--xs ti-check"></i> 24/7 Customer Support</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Plan -->
+                </div>
+            </div>
+        </div>
+        <!-- End Plan -->
+
+        <!-- Subscribe -->
+        <div class="g-bg-color--primary-to-blueviolet-ltr">
+            <div class="g-container--sm g-text-center--xs g-padding-y-80--xs g-padding-y-125--xsm">
+                <div class="g-margin-b-60--xs">
+                    <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--white-opacity g-letter-spacing--2 g-margin-b-25--xs">Subscribe</p>
+                    <h2 class="g-font-size-32--xs g-font-size-36--md g-letter-spacing--1 g-color--white">Join Over 1000+ People</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+                        <form class="input-group" method="post" action="{{ route('subscribe') }}">
+                            {{ csrf_field() }}
+                            <input type="email" class="form-control s-form-v1__input g-radius--left-50" name="email" placeholder="Enter your email">
+                            <span class="input-group-btn">
+                                <button type="submit" class="s-btn s-btn-icon--md s-btn-icon--white-brd s-btn--white-brd g-radius--right-50"><i class="ti-arrow-right"></i></button>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Subscribe -->
+
+        <!-- Testimonials -->
+        <div class="g-hor-divider__dashed--sky-light g-padding-y-80--xs g-padding-y-125--xsm">
+            <div class="container g-text-center--xs">
+                <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-50--xs">Testimonials</p>
+                <div class="s-swiper js__swiper-testimonials">
+                    <!-- Swiper Wrapper -->
+                    <div class="swiper-wrapper g-margin-b-50--xs">
+                        @foreach($ts as $p)
+                        <div class="swiper-slide g-padding-x-130--sm g-padding-x-150--lg">
+                            <div class="g-padding-x-20--xs g-padding-x-50--lg">
+                                <img class="g-width-70--xs g-height-70--xs g-hor-border-4__solid--white g-box-shadow__dark-lightest-v4 g-radius--circle g-margin-b-30--xs" src="{{$p->user->profile->profile_pic? Storage::url($p->user->profile->profile_pic) : URL::to('assets/img/avatars/avatar1.jpg')}}" alt="Image">
+                                <div class="g-margin-b-40--xs">
+                                    <p class="g-font-size-22--xs g-font-size-28--sm g-color--heading"><i>" {{ $p->testimony }} "</i></p>
+                                </div>
+                                <div class="center-block g-hor-divider__solid--heading-light g-width-100--xs g-margin-b-30--xs"></div>
+                                <h4 class="g-font-size-15--xs g-font-size-18--sm g-color--primary g-margin-b-5--xs">{{ $p->user->fullname() }}</h4>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <!-- End Swipper Wrapper -->
+
+                    <!-- Arrows -->
+                    <div class="g-font-size-22--xs g-color--heading js__swiper-fraction"></div>
+                    <a href="javascript:void(0);" class="g-display-none--xs g-display-inline-block--sm s-swiper__arrow-v1--right s-icon s-icon--md s-icon--primary-brd g-radius--circle ti-angle-right js__swiper-btn--next"></a>
+                    <a href="javascript:void(0);" class="g-display-none--xs g-display-inline-block--sm s-swiper__arrow-v1--left s-icon s-icon--md s-icon--primary-brd g-radius--circle ti-angle-left js__swiper-btn--prev"></a>
+                    <!-- End Arrows -->
+                </div>
+            </div>
+        </div>
+        <!-- End Testimonials -->
+
+@stop

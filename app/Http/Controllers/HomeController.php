@@ -40,7 +40,6 @@ class HomeController extends Controller
     public function subscribe()
     {
         $this->validate(request(), [
-            'name' => 'required',
             'email' => 'required|email|unique:subscribers,email'
         ]);
 

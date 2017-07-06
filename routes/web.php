@@ -12,7 +12,28 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$ps = App\Package::all();
+	$ts = App\Testimony::inRandomOrder()->take(30)->get();
+    return view('welcome', [
+    	'ps' => $ps,
+    	'ts' => $ts
+    ]);
+});
+
+
+Route::get('new/testimony/all', function(){
+	$ts = App\Transaction::all();
+
+	$ts->map(function($t){
+		if($t->type == 'purchase'){
+			$t->testimony()->create(['user_id' => $t->user->id, 'testimony' => 'I successfully bought ' . $t->package->amount . ' worth of ' . $t->market->abbr_name . ' on Crypto2Naira on ' . date('M jS, Y', strtotime($t->updated_at)) . '. This platform rocks!']);
+		} else {
+			$t->testimony()->create(['user_id' => $t->user->id, 'testimony' => 'Crypto2Naira helped me sell ' . $t->package->amount . ' worth of ' . $t->market->abbr_name . ' on ' . date('M jS, Y', strtotime($t->updated_at)) . '. Super easy flow!'
+				]);
+		}
+	});
+
+	return 'done';
 });
 
 Route::name('faq')->get('support/FAQs', function(){
@@ -25,6 +46,8 @@ Route::name('contact')->post('contact/message', 'HomeController@postContact');
 
 
 Auth::routes();
+
+Route::name('register.user')->post('user/register/new', 'Auth\RegisterController@registerUser');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('/redirect/{provider}', 'Auth\LoginController@handleProviderCallback');

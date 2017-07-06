@@ -12,12 +12,13 @@
 */
 
 Route::get('/', function () {
-	$ps = App\Package::all();
-	$ts = App\Testimony::inRandomOrder()->take(30)->get();
-    return view('welcome', [
-    	'ps' => $ps,
-    	'ts' => $ts
-    ]);
+	return 'in a moment';
+	// $ps = App\Package::all();
+	// $ts = App\Testimony::inRandomOrder()->take(30)->get();
+ //    return view('welcome', [
+ //    	'ps' => $ps,
+ //    	'ts' => $ts
+ //    ]);
 });
 
 

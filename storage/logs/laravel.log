@@ -1,0 +1,14 @@
+[2017-07-06 22:31:16] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Parse error: syntax error, unexpected 'public' (T_PUBLIC), expecting end of file in C:\projects\naira\app\Providers\AppServiceProvider.php:35
+Stack trace:
+#0 C:\projects\naira\vendor\composer\ClassLoader.php(322): Composer\Autoload\includeFile('C:\\projects\\nai...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Providers\\A...')
+#2 C:\projects\naira\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php(208): spl_autoload_call('App\\Providers\\A...')
+#3 C:\projects\naira\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php(144): Illuminate\Foundation\ProviderRepository->createProvider('App\\Providers\\A...')
+#4 C:\projects\naira\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php(61): Illuminate\Foundation\ProviderRepository->compileManifest(Array)
+#5 C:\projects\naira\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(549): Illuminate\Foundation\ProviderRepository->load(Array)
+#6 C:\projects\naira\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 C:\projects\naira\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(208): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#8 C:\projects\naira\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(267): Illuminate\Foundation\Application->bootstrapWith(Array)
+#9 C:\projects\naira\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(114): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 C:\projects\naira\artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 {main}  

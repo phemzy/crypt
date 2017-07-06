@@ -7,7 +7,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Megakit - HTML5 Theme</title>
+        <title>Crypto2Naira</title>
         <meta name="description" content="Crypto2Naira is a platform dedicated specifically towards the conversion of cryptocurrencies to the Nigerian 'naira'. It achieves that through a recurrent mutual obligation between registered members.">
 
         <meta name="description" content="Sell you TBC here on Crypto2Naira. We allow you exchange your TBC for naira all free of charge.">

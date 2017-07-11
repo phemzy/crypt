@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Notifications\TransactionReset;
+use App\Notifications\FailedTransaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Transaction;
@@ -154,6 +156,22 @@ class TransactionController extends Controller
         }
         else
             return back();
+    }
+
+    public function unmatch(Transaction $transaction)
+    {
+        $matched_transaction = $transaction->matched_transaction;
+        $recipient = $transaction->recipient();
+
+        $transaction->update(['transaction_id' => null, 'recipient_id' => null, 'status' => 'pending']);
+        $matched_transaction->update(['transaction_id' => null, 'recipient_id' => null, 'status' => 'failed']);
+
+        $transaction->user->notify(new TransactionReset($transaction->user, $transaction));
+        $matched_transaction->user->notify(new FailedTransaction($matched_transaction->user, $matched_transaction));
+
+        session()->flash('success', 'Transaction unmatched');
+
+        return back();
     }
 
 }

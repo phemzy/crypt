@@ -155,13 +155,14 @@
                                     <li class="dropdown">
                                         <button type="button" data-toggle="dropdown" class="btn btn-info"> <span class="caret"></span></button>
                                         <ul class="dropdown-menu dropdown-menu-right">
+                                            @if($t->isMatched())
                                             <li>
-                                                @if($t->isMatched())
-                                                    <a href="">Unmatch</a>
-                                                @else
-                                                    <a href="">Match</a>
-                                                @endif
-                                            </li>
+                                                <a href="{{ route('unmatch', $t->id) }}" onclick="event.preventDefault();document.getElementById('{{ $t->id }}').submit()">Unmatch</a>
+                                                <form action="{{ route('unmatch', $t->id) }}" id="{{ $t->id }}" method="post">
+                                                    {{ csrf_field() }}
+                                                </form>
+                                            </li>                                                
+                                            @endif
                                             <li>
                                                 @if($t->hasFailed())
                                                     <a href="">Block Due to Failed</a>

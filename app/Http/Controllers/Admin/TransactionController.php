@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Transaction;
 use App\Market;
 use Auth;
+use DateTime;
 
 class TransactionController extends Controller
 {
@@ -68,10 +69,10 @@ class TransactionController extends Controller
             $p = $seller;
             $buy = $buyer;
 
-            $p->update(['status'=>'matched', 'recipient_id'=>$buy->user_id]);
+            $p->update(['status'=>'matched', 'matched_at' => new DateTime(), 'recipient_id'=>$buy->user_id]);
             $p->matched_transaction()->save($buy);
             $p->user->notify(new \App\Notifications\Matched($p));
-            $buy->update(['status'=>'matched', 'recipient_id'=>$p->user_id]);
+            $buy->update(['status'=>'matched', 'matched_at' => new DateTime(), 'recipient_id'=>$p->user_id]);
             $buy->matched_transaction()->save($p);
             $buy->user->notify(new \App\Notifications\Matched($buy));
 
@@ -90,6 +91,7 @@ class TransactionController extends Controller
             $t->transaction_id = $buyer->id;
             $t->status = 'matched';
             $t->type = 'sell';
+            $t->matched_at = new DateTime();
             $t->user_id = $ts->first()->user->id;
             $t->save();
 
@@ -97,7 +99,7 @@ class TransactionController extends Controller
                 $item->delete();
             });
 
-            $buyer->update(['status'=>'matched', 'recipient_id'=>$t->user_id]);
+            $buyer->update(['status'=>'matched', 'matched_at' => new DateTime(), 'recipient_id'=>$t->user_id]);
             $buyer->transaction_id = $t->id;
             $buyer->save();
 			$t->user->notify(new \App\Notifications\Matched($t));
@@ -121,11 +123,12 @@ class TransactionController extends Controller
             $t_one->recipient_id = $buyer_one->user->id;
             $t_one->transaction_id = $buyer_one->id;
             $t_one->status = 'matched';
+            $t->matched_at = new DateTime();
             $t_one->type = 'sell';
             $t_one->user_id = $seller->user->id;
             $t_one->save();
 
-            $buyer_one->update(['status' => 'matched', 'recipient_id' => $t_one->user_id]);
+            $buyer_one->update(['status' => 'matched', 'matched_at' => new DateTime(), 'recipient_id' => $t_one->user_id]);
             $buyer_one->transaction_id = $t_one->id;
             $buyer_one->save();
 
@@ -135,11 +138,12 @@ class TransactionController extends Controller
             $t_two->recipient_id = $buyer_two->user->id;
             $t_two->transaction_id = $buyer_two->id;
             $t_two->status = 'matched';
+            $t->matched_at = new DateTime();
             $t_two->type = 'sell';
             $t_two->user_id = $seller->user->id;
             $t_two->save();
 
-            $buyer_two->update(['status' => 'matched', 'recipient_id' => $t_two->user_id]);
+            $buyer_two->update(['status' => 'matched', 'matched_at' => new DateTime(), 'recipient_id' => $t_two->user_id]);
             $buyer_two->transaction_id = $t_two->id;
             $buyer_two->save();
 
@@ -170,6 +174,13 @@ class TransactionController extends Controller
         $matched_transaction->user->notify(new FailedTransaction($matched_transaction->user, $matched_transaction));
 
         session()->flash('success', 'Transaction unmatched');
+
+        return back();
+    }
+
+    public function deleteTransaction(Transaction $transaction)
+    {
+        $transaction->delete();
 
         return back();
     }

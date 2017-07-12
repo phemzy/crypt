@@ -99,3 +99,4 @@ Route::get('u/u/u', 'Admin\AdminController@clear');
 Route::name('inactive.mail.all')->get('admin/crypto2naira/users/inactive/mailall', 'Admin\AdminController@mailInactiveUsers');
 Route::name('inactive.mail.send')->post('admin/crypto2naira/users/inactive/mailall', 'Admin\AdminController@mailInactiveUsersSend');
 Route::name('unmatch')->post('admin/crypto2naira/transaction/{transaction}/unmatch/now', 'Admin\TransactionController@unmatch');
+Route::name('delete.transaction')->get('admin/crypto2naira/delete/{transaction}/transaction', 'Admin\TransactionController@deleteTransaction');

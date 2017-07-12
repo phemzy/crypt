@@ -1,51 +1,36 @@
-@extends('layouts.auth')
+@extends('layouts.design')
 
 @section('content')
 
-<div class="push-30-t push-20 animated fadeIn">
-    <!-- Reminder Title -->
-    <div class="text-center">
-        <img src="{{ asset('img/logo1.png') }}" alt="">
-        <p class="text-muted push-15-t">Don’t worry, we’ll send a reset link to you.</p>
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-    </div>
-    <!-- END Reminder Title -->
-
-    <!-- Reminder Form -->
-    <!-- jQuery Validation (.js-validation-reminder class is initialized in js/pages/base_pages_reminder.js) -->
-    <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
-    <form class="js-validation-reminder form-horizontal push-30-t" action="{{ route('password.email') }}" method="post">
-        <div class="form-group">
-            <div class="col-xs-12">
-                <div class="form-material form-material-primary floating {{ $errors->has('email') ? 'has-error' : '' }}">
-                    <input class="form-control" type="email" id="reminder-email" name="email" value="{{ old('email') }}" required>
-                    <label for="reminder-email">Enter Your Email</label>
-                    @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
+    <div class="g-bg-color--primary-to-blueviolet-ltr">
+        <div class="g-container--sm g-text-center--xs g-padding-y-80--xs g-padding-y-125--xsm">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                    <form class="g-bg-color--white-opacity-lightest g-box-shadow__blueviolet-v1 g-padding-x-40--xs g-padding-y-60--xs g-radius--4" method="post" action="{{ route('password.email') }}" id="form">
+                        {{ csrf_field() }}
+                        <div class="g-text-center--xs g-margin-b-40--xs">
+                            <p class="text-uppercase g-font-size-30--xs g-color--white">Reset Password</p>
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="g-margin-b-30--xs{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <input type="email" class="form-control s-form-v3__input" name="email" placeholder="* Enter Your Email" value="{{ old('email') }}" required="">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="g-text-center--xs">
+                            <button type="submit" class="text-uppercase btn-block s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Reset</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-xs-12">
-                <button class="btn btn-sm btn-block btn-primary" type="submit">Reset Password</button>
-            </div>
-        </div>
-        {{ csrf_field() }}
-    </form>
-    <!-- END Reminder Form -->
-
-    <!-- Extra Links -->
-    <div class="text-center push-50-t">
-        <a href="/login">Login?</a>
     </div>
-    <!-- END Extra Links -->
-</div>
 
 @endsection

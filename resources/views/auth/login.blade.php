@@ -29,7 +29,7 @@
                         </div>
                         <div class="g-text-center--xs">
                             <button type="submit" class="text-uppercase btn-block s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Login</button>
-                            <a class="g-color--white g-font-size-13--xs" href="#">Forgot Password?</a><br>
+                            <a class="g-color--white g-font-size-13--xs" href="{{ route('password.request') }}">Forgot Password?</a><br>
                             <a class="g-color--white g-font-size-13--xs" href="register">Register</a>
 
                         </div>

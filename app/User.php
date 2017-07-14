@@ -107,7 +107,7 @@ class User extends Authenticatable
 
     public function hasEmptyTransactions()
     {
-        return (bool) $this->transactions->count();
+        return $this->transactions->count() != 0 ? false : true;
     }
 
     public function hasTransactions()

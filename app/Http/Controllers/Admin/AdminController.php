@@ -46,7 +46,7 @@ class AdminController extends Controller
         
         return view('admin.users.all', [
             'users' => $users,
-            'inactive' => User::where('empty_transaction', 'true')->get(),
+            'inactive' => User::where('empty_transaction', true)->get(),
             'type' => $type,
         ]);
     }

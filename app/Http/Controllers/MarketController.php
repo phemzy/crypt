@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\VoucherGenerated;
+use App\Voucher;
 use Illuminate\Http\Request;
 use App\Market;
 use App\Package;
@@ -19,13 +21,13 @@ class MarketController extends Controller
 
     public function buy($market)
     {
-        $t = Transaction::where('user_id', Auth::id())->where('type', 'purchase')->where('status', '!=', 'complete')->first();
+        // $t = Transaction::where('user_id', Auth::id())->where('type', 'purchase')->where('status', 'pending')->first();
 
-        if($t){
-            session()->flash('error', 'You bought ' . $t->market->abbr_name . ' worth ' . $t->package->amount . ' and it is ' . $t->status. '. Kindly complete it first.');
+        // if($t){
+        //     session()->flash('error', 'You bought ' . $t->market->abbr_name . ' worth ' . $t->package->amount . ' and it is ' . $t->status. '. Kindly complete it first.');
 
-            return back();
-        }
+        //     return back();
+        // }
 
     	$m = Market::where('abbr_name', $market)->first();
 
@@ -75,13 +77,13 @@ class MarketController extends Controller
             return back();
         }
 
-        $t = Transaction::where('user_id', Auth::id())->where('type', 'purchase')->where('status', '!=', 'complete')->first();
+        // $t = Transaction::where('user_id', Auth::id())->where('type', 'purchase')->where('status', '!=', 'complete')->first();
 
-        if($t){
-            session()->flash('error', 'You bought ' . $t->market->abbr_name . ' worth ' . $t->package->amount . ' and it is ' . $t->status. '. Kindly complete it first.');
+        // if($t){
+        //     session()->flash('error', 'You bought ' . $t->market->abbr_name . ' worth ' . $t->package->amount . ' and it is ' . $t->status. '. Kindly complete it first.');
 
-            return redirect()->route('transaction.single', $t->id);
-        }
+        //     return redirect()->route('transaction.single', $t->id);
+        // }
 
     	$t = new Transaction;
 
@@ -195,5 +197,22 @@ class MarketController extends Controller
     {
     	$transactions = request()->user()->transactions()->where('type', 'sell')->latest()->paginate('10');
     	return view('history.sell', compact('transactions'));
+    }
+
+    public function convertToVoucher(Transaction $transaction)
+    {
+        $v = new Voucher;
+        $v->name = "JULY-" . str_random(5) . '-SALES-' . random_int(1, 1000);
+        $v->amount = $transaction->package->amount;
+        $v->user_id = auth()->id();
+        $v->save();
+
+        $transaction->delete();
+
+        auth()->user()->notify(new VoucherGenerated(auth()->user(), $v));
+
+        session()->flash('success', 'Your voucher has been sent to your mail.');
+
+        return back();
     }
 }

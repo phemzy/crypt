@@ -51,7 +51,6 @@ class AdminController extends Controller
         ]);
     }
 
-
     public function blockuser(User $user)
     {
         if($user->isBlocked()){

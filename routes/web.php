@@ -71,6 +71,7 @@ Route::get('history/all', 'MarketController@getAllHistory')->name('history.all')
 Route::get('history/purchase', 'MarketController@getBuyingHistory')->name('history.buy');
 Route::get('history/sold', 'MarketController@getSellingHistory')->name('history.sell');
 Route::name('transaction.single')->get('transaction/{t}/view', 'MarketController@viewSingleTransaction');
+Route::name('convert_to_voucher')->get('transaction/{transaction}/convert', 'MarketController@convertToVoucher');
 
 Route::get('market/{market}/buy', 'MarketController@buy')->name('market.buy');
 Route::get('market/{market}/sell', 'MarketController@sell')->name('market.sell');

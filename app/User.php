@@ -34,6 +34,23 @@ class User extends Authenticatable
         return $this->hasMany(Testimony::class);
     }
 
+    public function hasPaid()
+    {
+        $p = $this->payments()->where('status', 'successful')->where('type', 'Sales Registration Fee')->first();
+
+        return $p ? true : false;
+    }
+
+    public function plans()
+    {
+        return $this->belongsTo(Plan::class, 'plan');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     public function hasCompletedProfile()
     {
         return (bool) $this->complete == true;

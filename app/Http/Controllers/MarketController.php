@@ -9,6 +9,7 @@ use App\Market;
 use App\Package;
 use App\Transaction;
 use Auth;
+use PDF;
 
 class MarketController extends Controller
 {
@@ -214,5 +215,16 @@ class MarketController extends Controller
         session()->flash('success', 'Your voucher has been sent to your mail.');
 
         return back();
+    }
+
+    public function generateInvoice()
+    {
+        if(!auth()->user()->hasPaid()){
+            session()->flash('error', 'Sorry, you are not qualified');
+
+            return redirect('/home');
+        }
+        $pdf = PDF::loadView('pdf');
+        return $pdf->download('pdf.pdf');
     }
 }

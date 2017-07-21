@@ -82,6 +82,7 @@ Route::name('crypto.buy')->post('package/{market}/{package}/purchase', 'MarketCo
 Route::name('crypto.sell')->post('package/{market}/sell', 'MarketController@sellCrypto');
 Route::name('payment.confirm')->post('crypto/market/{t}/comfirm', 'MarketController@confirmPayment');
 Route::name('upload.proof')->post('transaction/upload/proof/{t}', 'MarketController@uploadProof');
+Route::name('invoice.generate')->get('invoice', 'MarketController@generateInvoice');
 
 ####ADMIN ROUTES#####
 Route::name('admin.login.show')->get('admin/show/login-form', 'Admin\AuthController@showLoginForm');

@@ -15,15 +15,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-  //       \View::share('markets', \App\Market::all());
-		// \View::share('packages', \App\Package::all());
-		// Schema::defaultStringLength(191);
+        \View::share('markets', \App\Market::all());
+		\View::share('packages', \App\Package::all());
+		Schema::defaultStringLength(191);
 
-  //       \Cloudinary::config(array( 
-  //         "cloud_name" => "crypto2naira", 
-  //         "api_key" => "328753983467173", 
-  //         "api_secret" => "hzqND4v2tKPkXs-r8mB-siWQ6lA" 
-  //       ));
+        \Cloudinary::config(array( 
+          "cloud_name" => "crypto2naira", 
+          "api_key" => "328753983467173", 
+          "api_secret" => "hzqND4v2tKPkXs-r8mB-siWQ6lA" 
+        ));
     }
 
     /**

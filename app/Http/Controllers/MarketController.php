@@ -34,7 +34,7 @@ class MarketController extends Controller
 
     	return view('market.market', [
     		'market' => $m,
-    		'packages' => Package::oldest()->get(),
+    		'packages' => Package::oldest()->where('name', '!=', 'Beginner')->get(),
     	]);
     }
 

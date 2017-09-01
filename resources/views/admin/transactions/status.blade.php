@@ -23,7 +23,7 @@
                             <th class="">Amount</th>
                             <th>Date Created</th>
                             <th>Status</th>
-                            @if($status == 'matched')
+                            @if($status == 'matched' || $status == 'complete')
                                 <th>Date Matched</th>
                             	<th>Matcher</th>
 
@@ -57,7 +57,7 @@
                             <td>
                                 <span class="label label-danger">{{ $t->status }}</span>
                             </td>
-                            @if($status == 'matched')
+                            @if($status == 'matched' || $status == 'complete')
                                 <td>{{ date('D M jS, Y g:ia', strtotime($t->matched_at ?: $t->updated_at))  }}</td>
                             	<td><button class="btn btn-default" data-toggle="modal" data-target="#{{ $t->transaction_id }}" type="button"> Matched User </button></td>
                             	<div class="modal fade" id="{{ $t->transaction_id }}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -186,26 +186,7 @@
                     </tbody>
                 </table>
                 <nav class="text-right">
-                    <ul class="pagination pagination-sm">
-                        <li class="active">
-                            <a href="javascript:void(0)">1</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">4</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">5</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"><i class="fa fa-angle-right"></i></a>
-                        </li>
-                    </ul>
+                    {{ $trans->links() }}
                 </nav>
             </div>
         </div>

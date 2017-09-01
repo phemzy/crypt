@@ -136,26 +136,7 @@
                     </tbody>
                 </table>
                 <nav class="text-right">
-                    <ul class="pagination pagination-sm">
-                        <li class="active">
-                            <a href="javascript:void(0)">1</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">4</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">5</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"><i class="fa fa-angle-right"></i></a>
-                        </li>
-                    </ul>
+                    {{ $trans->links() }}
                 </nav>
             </div>
         </div>

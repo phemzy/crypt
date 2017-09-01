@@ -21,7 +21,7 @@ class TransactionController extends Controller
 
     public function all($type)
     {
-    	$t = Transaction::where('type', $type)->latest()->get();
+    	$t = Transaction::where('type', $type)->latest()->paginate(100);
 
     	return view('admin.transactions.all', [
     		'trans' => $t,
@@ -31,7 +31,7 @@ class TransactionController extends Controller
 
     public function status($type, $status)
     {
-    	$trans = Transaction::where('type', $type)->where('status', $status)->get();
+    	$trans = Transaction::where('type', $type)->where('status', $status)->paginate(100);
  
         return view('admin.transactions.status', compact('trans', 'status', 'type'));
     }

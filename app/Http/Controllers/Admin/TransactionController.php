@@ -272,4 +272,33 @@ class TransactionController extends Controller
         die('I can\'t split anything');
     }
 
+    public function splitThree(Transaction $transaction)
+    {
+        if($transaction->package->amount == 50000){
+            for ($i=0; $i < 2; $i++) { 
+                $t_one = new Transaction();
+                $t_one->market_id = $transaction->market_id;
+                $t_one->package_id = 2;
+                $t_one->status = 'pending';
+                $t_one->type = 'purchase';
+                $t_one->user_id = $transaction->user_id;
+                $t_one->created_at = $transaction->created_at;
+                $t_one->save();
+            }
+
+            $t_one = new Transaction();
+                $t_one->market_id = $transaction->market_id;
+                $t_one->package_id = 1;
+                $t_one->status = 'pending';
+                $t_one->type = 'purchase';
+                $t_one->user_id = $transaction->user_id;
+                $t_one->created_at = $transaction->created_at;
+                $t_one->save();
+
+            $transaction->delete();
+
+            return back()->with(["success" => "Splited"]);
+        }
+    }
+
 }

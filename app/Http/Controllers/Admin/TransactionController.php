@@ -185,4 +185,91 @@ class TransactionController extends Controller
         return back();
     }
 
+    public function split(Transaction $transaction)
+    {
+        if($transaction->package->amount == 10000){
+            $t_one = new Transaction();
+            $t_one->market_id = $transaction->market_id;
+            $t_one->package_id = 5;
+            $t_one->status = 'pending';
+            $t_one->type = 'purchase';
+            $t_one->user_id = $transaction->user_id;
+            $t_one->created_at = $transaction->created_at;
+            $t_one->save();
+
+            $t_one = new Transaction();
+            $t_one->market_id = $transaction->market_id;
+            $t_one->package_id = 5;
+            $t_one->status = 'pending';
+            $t_one->type = 'purchase';
+            $t_one->user_id = $transaction->user_id;
+            $t_one->created_at = $transaction->created_at;
+            $t_one->save();
+
+            $transaction->delete();
+
+            return back()->with(["success" => "Splited"]);
+
+        }
+
+        if($transaction->package->amount == 20000){
+            $t_one = new Transaction();
+            $t_one->market_id = $transaction->market_id;
+            $t_one->package_id = 1;
+            $t_one->status = 'pending';
+            $t_one->type = 'purchase';
+            $t_one->user_id = $transaction->user_id;
+            $t_one->created_at = $transaction->created_at;
+            $t_one->save();
+
+            $t_one = new Transaction();
+            $t_one->market_id = $transaction->market_id;
+            $t_one->package_id = 1;
+            $t_one->status = 'pending';
+            $t_one->type = 'purchase';
+            $t_one->user_id = $transaction->user_id;
+            $t_one->created_at = $transaction->created_at;
+            $t_one->save();
+            $transaction->delete();
+            return back()->with(["success" => "Splited"]);
+        }
+
+        if($transaction->package->amount == 50000){
+            for ($i=0; $i < 5; $i++) { 
+                $t_one = new Transaction();
+                $t_one->market_id = $transaction->market_id;
+                $t_one->package_id = 1;
+                $t_one->status = 'pending';
+                $t_one->type = 'purchase';
+                $t_one->user_id = $transaction->user_id;
+                $t_one->created_at = $transaction->created_at;
+                $t_one->save();
+            }
+
+            $transaction->delete();
+
+            return back()->with(["success" => "Splited"]);
+        }
+
+        if ($transaction->package->amount == 100000) {
+            # code...
+            for ($i=0; $i < 5; $i++) { 
+                $t_one = new Transaction();
+                $t_one->market_id = $transaction->market_id;
+                $t_one->package_id = 2;
+                $t_one->status = 'pending';
+                $t_one->type = 'purchase';
+                $t_one->user_id = $transaction->user_id;
+                $t_one->created_at = $transaction->created_at;
+                $t_one->save();
+            }
+
+            $transaction->delete();
+
+            return back()->with(["success" => "Splited"]);
+        }
+
+        die('I can\'t split anything');
+    }
+
 }

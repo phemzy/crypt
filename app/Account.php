@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     //
-    protected $fillable = ['package_id', 'loop', 'account_name', 'account_number', 'bank_name'];
+    protected $guarded = [];
 
     public function user()
     {

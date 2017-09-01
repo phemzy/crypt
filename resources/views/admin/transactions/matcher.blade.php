@@ -39,6 +39,7 @@
                                     <th>Package</th>
                                     <th class="">Amount</th>
                                     <th>Date Created</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,6 +53,13 @@
                                         <td>{{ $t->package->name }}</td>
                                         <td>{{ $t->package->amount }}</td>
                                         <td>{{ $t->created_at->diffForHumans() }}</td>
+                                        @if($t->package_id != 5)
+                                        <td>
+                                            <a href="{{ route('transaction.split', $t->id) }}" class="btn btn-info btn-sm btn-circle">
+                                                Split
+                                            </a>
+                                        </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

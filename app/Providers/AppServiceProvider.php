@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
   //         "api_key" => "328753983467173", 
   //         "api_secret" => "hzqND4v2tKPkXs-r8mB-siWQ6lA" 
   //       ));
-  //   }
+    }
 
     /**
      * Register any application services.

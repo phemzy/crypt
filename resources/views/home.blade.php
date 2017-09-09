@@ -16,24 +16,6 @@
             <!-- Main Content -->
             <div class="row">
                 <div class="col-sm-5 col-sm-push-7 col-lg-4 col-lg-push-8">
-                    <!-- Follow -->
-                    {{-- <div class="block">
-                        <div class="block-content block-content-full text-center">
-                            <button class="btn btn-sm btn-default"><i class="fa fa-fw fa-plus text-success"></i> Follow</button>
-                            <button class="btn btn-sm btn-default"><i class="fa fa-fw fa-inbox text-info"></i> Send Message</button>
-                        </div>
-                    </div> --}}
-                    <!-- END Follow -->
-
-                    <!-- About -->
-                    {{-- <div class="block">
-                        <div class="block-content">
-                            <p>Hi there, welcome to my profile!</p>
-                            <p></p>
-                        </div>
-                    </div> --}}
-                    <!-- END About -->
-
                     <!-- Followers -->
                     <div class="block block-opt-refresh-icon6">
                         <div class="block-header">
@@ -47,13 +29,6 @@
                         <div class="block-content">
                             <ul class="nav-users push">
                                 <li>Your followers appear here</li>
-                                {{-- <li>
-                                    <a href="base_pages_profile.html">
-                                        <img class="img-avatar" src="assets/img/avatars/avatar1.jpg" alt="">
-                                        <i class="fa fa-circle text-danger"></i> Laura Bell
-                                        <div class="font-w400 text-muted"><small>Photographer</small></div>
-                                    </a>
-                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -99,24 +74,7 @@
                         <div class="block-content">
                             <ul class="list list-simple">
                                 <li>When anyone rates you, the rating will appear here. Make your trading transactions easy and smooth to get good ratings</li>
-                                {{-- <li>
-                                    <div class="push-5 clearfix">
-                                        <div class="text-warning pull-right">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a class="font-w600" href="base_pages_profile.html">Ethan Howard</a>
-                                        <span class="text-muted">(5/5)</span>
-                                    </div>
-                                    <div class="font-s13">Working great in all my devices, quality and quantity in a great package! Thank you!</div>
-                                </li> --}}
                             </ul>
-                            {{-- <div class="text-center push">
-                                <small><a href="javascript:void(0)">Read More..</a></small>
-                            </div> --}}
                         </div>
                     </div>
                     <!-- END Ratings -->
@@ -140,7 +98,7 @@
                             <h4 class="text-center">All your transactional details and market updates will appear here. <br> <small>
                                 Get your account rolling!
                             </small></h4>
-                                @if(Auth::user()->profile->tbc_wallet_id == null || Auth::user()->profile->account_number == null)
+                                @if((Auth::user()->profile->tbc_wallet_id == null ) || (Auth::user()->profile->account_number == null))
                                     <h5 class="text-center">
                                         Some of your trading details are not filled. Like your bank account details and TBC wallet ID. You need these for complete transaction. Click <a href="{{ route('trading.bank') }}" class="btn-link">HERE</a> to edit them.
                                     </h5>
@@ -151,14 +109,6 @@
                                     <div class="block-header bg-danger">
                                     </div>
                                     <div class="block-content">
-
-                                        @if(Auth::user()->profile->tbc_wallet_id == null || Auth::user()->profile->account_number == null)
-
-                                            <h5 class="text-center">
-                                                Some of your trading details are not filled. Like your bank account details and TBC wallet ID. You need these for complete transaction. Click <a href="{{ route('trading.bank') }}">HERE</a> to edit them.
-                                            </h5>
-                                            <br><hr>
-                                        @endif
                                         
                                         <ul class="list list-timeline pull-t">
                                             @foreach($transactions as $t)
@@ -172,51 +122,6 @@
                                     </div>
                                 </div>
                             @endif
-                            <!-- Generic Notification -->
-                            {{-- <div class="block block-transparent pull-r-l">
-                                <div class="block-header bg-gray-lighter">
-                                    <ul class="block-options">
-                                        <li>
-                                            <span><em class="text-muted">4 hrs ago</em></span>
-                                        </li>
-                                        <li>
-                                            <span><i class="fa fa-briefcase text-modern"></i></span>
-                                        </li>
-                                    </ul>
-                                    <h3 class="block-title">3 New Products were added!</h3>
-                                </div>
-                                <div class="block-content block-content-full">
-                                    <a class="item item-rounded push-10-r bg-info" data-toggle="tooltip" title="MyPanel" href="javascript:void(0)">
-                                        <i class="si si-rocket text-white-op"></i>
-                                    </a>
-                                    <a class="item item-rounded push-10-r bg-amethyst" data-toggle="tooltip" title="Project Time" href="javascript:void(0)">
-                                        <i class="si si-calendar text-white-op"></i>
-                                    </a>
-                                    <a class="item item-rounded push-10-r bg-city" data-toggle="tooltip" title="iDashboard" href="javascript:void(0)">
-                                        <i class="si si-speedometer text-white-op"></i>
-                                    </a>
-                                </div>
-                            </div> --}}
-                            <!-- END Generic Notification -->
-
-                            <!-- Twitter Notification -->
-                            {{-- <div class="block block-transparent pull-r-l">
-                                <div class="block-header bg-gray-lighter">
-                                    <ul class="block-options">
-                                        <li>
-                                            <span><em class="text-muted">12 hrs ago</em></span>
-                                        </li>
-                                        <li>
-                                            <span><i class="fa fa-twitter text-info"></i></span>
-                                        </li>
-                                    </ul>
-                                    <h3 class="block-title">+ 1150 Followers</h3>
-                                </div>
-                                <div class="block-content">
-                                    <p class="font-s13">You’re getting more and more followers, keep it up!</p>
-                                </div>
-                            </div> --}}
-                            <!-- END Twitter Notification -->
                         </div>
                     </div>
                     <!-- END Timeline -->

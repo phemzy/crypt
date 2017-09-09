@@ -179,12 +179,7 @@
                             </ul>
                         </div>
                     </li>
-                    {{-- <li>
-                        <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
-                        <button class="btn btn-default" data-toggle="layout" data-action="side_overlay_toggle" type="button">
-                            <i class="fa fa-tasks"></i>
-                        </button>
-                    </li> --}}
+                    </li>
                 </ul>
                 <!-- END Header Navigation Right -->
 
@@ -215,9 +210,9 @@
                         </button>
                     </li>
                     <li class="js-header-search header-search">
-                        <form class="form-horizontal" action="base_pages_search.html" method="post">
+                        <form class="form-horizontal" action="{{ route('search') }}" method="get">
                             <div class="form-material form-material-primary input-group remove-margin-t remove-margin-b">
-                                <input class="form-control" type="text" id="base-material-text" name="base-material-text" placeholder="Search..">
+                                <input class="form-control" type="text" id="base-material-text" name="search" placeholder="Search..">
                                 <span class="input-group-addon"><i class="si si-magnifier"></i></span>
                             </div>
                         </form>
@@ -321,7 +316,9 @@
                         <div class="block-content text-center">
                             @foreach($markets as $market)
                             <p>
+                                @if($market->abbr_name == 'TBC')
                                 <a href="{{ route('market.buy', $market->abbr_name) }}" class="btn btn-rounded btn-danger">{{$market->name}} ({{$market->abbr_name}})</a>
+                                @endif
                             </p>
                             @endforeach
                         </div>

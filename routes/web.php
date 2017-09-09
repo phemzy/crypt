@@ -41,6 +41,8 @@ Route::name('faq')->get('support/FAQs', function(){
 	return view('faq');
 });
 
+Route::name('search')->get('search', 'SearchController@search');
+
 Route::name('subscribe')->post('user/subscribe', 'HomeController@subscribe');
 
 Route::name('contact')->post('contact/message', 'HomeController@postContact');
@@ -72,6 +74,7 @@ Route::get('history/purchase', 'MarketController@getBuyingHistory')->name('histo
 Route::get('history/sold', 'MarketController@getSellingHistory')->name('history.sell');
 Route::name('transaction.single')->get('transaction/{t}/view', 'MarketController@viewSingleTransaction');
 Route::name('convert_to_voucher')->get('transaction/{transaction}/convert', 'MarketController@convertToVoucher');
+Route::name('convert_to_tbc')->get('transaction/{transaction}/change-to-tbc', 'MarketController@convertToTbc');
 
 Route::get('market/{market}/buy', 'MarketController@buy')->name('market.buy');
 Route::get('market/{market}/sell', 'MarketController@sell')->name('market.sell');

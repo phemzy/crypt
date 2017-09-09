@@ -93,39 +93,6 @@
             </div>
         </div>
         <!-- END Material Register -->
-
-         <div class="block block-themed col-md-6 col-md-offset-3 col-xs-12">
-            <div class="block-header bg-primary">
-                <ul class="block-options">
-                    <li>
-                        <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
-                    </li>
-                </ul>
-                <h3 class="block-title">GRC Email</h3>
-            </div>
-            <div class="block-content">
-                <form class="form-horizontal push-10-t push-10" action="{{ route('trading.grc.save') }}" method="post">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <div class="col-xs-12 {{ $errors->first('grc_email') ? 'has-error' : '' }}">
-                            <div class="form-material">
-                                <input class="form-control" type="text" id="grc_email" name="grc_email" placeholder="Enter your GRC email.."  value="{{ Auth::user()->profile->grc_email }}">
-                                <label for="grc_email">Account Number</label>
-                                @if($errors->first('grc_email'))
-                                    <span class="help-block">{{ $errors->first('grc_email') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-plus push-5-r"></i> Update</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- END Material Register -->
     </div>
     <!-- END Page Content -->
 </main>

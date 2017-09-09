@@ -9,7 +9,7 @@
                     <div class="col-lg-6 col-sm-6 g-hor-centered-row__col g-text-center--xs g-text-left--md g-margin-b-60--xs g-margin-b-0--md">
                         <div class="s-promo-block-v1__square-effect g-margin-b-60--xs text-center">
                             <h1 class="g-font-size-32--xs g-font-size-45--sm g-font-size-50--lg g-color--white">Nigeria's Topmost<br>Crypto Exchanger</h1>
-                            <p class="g-font-size-20--xs g-font-size-26--md g-color--white g-margin-b-0--xs">TBC | GRC | BTC</p>
+                            <p class="g-font-size-20--xs g-font-size-26--md g-color--white g-margin-b-0--xs">TBC | BTC</p>
                         </div>
                         <span class="g-display-block--xs g-display-inline-block--lg g-margin-b-10--xs g-margin-b-10--lg">
                             @if(Auth::check())
@@ -132,53 +132,6 @@
         </div>
         <!-- End Mockup -->
 
-{{--         <!-- Portfolio -->
-        <div class="container g-padding-y-80--xs g-padding-y-125--xsm">
-            <div class="row g-margin-b-30--xs">
-                <div class="col-sm-4">
-                    <div class="g-margin-t-20--md g-margin-b-40--xs">
-                        <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">Branding Work</p>
-                        <h2 class="g-font-size-32--xs g-font-size-36--md">Projects</h2>
-                        <p>We are masters of most current technologies.<br>Check us out and enjoy things that we know we're good at.</p>
-                    </div>
-                </div>
-
-                <div class="col-sm-8">
-                    <!-- Portfolio Gallery -->
-                    <div id="js__grid-portfolio-gallery" class="s-portfolio__paginations-v1 cbp">
-                        @foreach($ps as $p)
-                        <!-- Item -->
-                        <div class="s-portfolio__item cbp-item logos">
-                            <div class="s-portfolio__img-effect">
-                                <img src="{{ URL::to('asset/img/970x647/07.jpg') }}" alt="Portfolio Image">
-                            </div>
-                            <div class="s-portfolio__caption-hover--cc">
-                                <div class="g-margin-b-25--xs">
-                                    <h4 class="g-font-size-18--xs g-color--white g-margin-b-5--xs">Portfolio Item</h4>
-                                    <p class="g-color--white-opacity">by KeenThemes Inc.</p>
-                                </div>
-                                <ul class="list-inline g-ul-li-lr-5--xs g-margin-b-0--xs">
-                                    <li>
-                                        <a href="img/970x647/07.jpg" class="cbp-lightbox s-icon s-icon--sm s-icon--white-bg g-radius--circle" data-title="Portfolio Item <br/> by KeenThemes Inc.">
-                                            <i class="ti-fullscreen"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" class="s-icon s-icon--sm s-icon s-icon--white-bg g-radius--circle">
-                                            <i class="ti-link"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    <!-- End Portfolio Gallery -->
-                </div>
-            </div>
-        </div>
-        <!-- End Portfolio -->
- --}}
         <!-- Plan -->
         <div class="g-bg-color--sky-light">
             <div class="container g-padding-y-80--xs g-padding-y-125--xsm">
@@ -245,7 +198,7 @@
             <div class="g-container--sm g-text-center--xs g-padding-y-80--xs g-padding-y-125--xsm">
                 <div class="g-margin-b-60--xs">
                     <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--white-opacity g-letter-spacing--2 g-margin-b-25--xs">Subscribe</p>
-                    <h2 class="g-font-size-32--xs g-font-size-36--md g-letter-spacing--1 g-color--white">Join Over 1000+ People</h2>
+                    <h2 class="g-font-size-32--xs g-font-size-36--md g-letter-spacing--1 g-color--white">Join Over 2000+ People</h2>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">

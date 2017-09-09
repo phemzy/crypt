@@ -217,6 +217,15 @@ class MarketController extends Controller
         return back();
     }
 
+    public function convertToTbc(Transaction $transaction)
+    {
+        $m = Market::where('abbr_name', 'TBC')->first();
+
+        $transaction->update(['market_id' => $m->id]);
+        
+        return back()->withSuccess('Transaction converted to TBC successfully!');
+    }
+
     public function generateInvoice()
     {
         if(!auth()->user()->hasPaid()){

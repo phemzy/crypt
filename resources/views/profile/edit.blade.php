@@ -89,30 +89,6 @@
                     <div class="tab-pane fade" id="tab-profile-privacy">
                         <div class="row items-push">
                             <div class="col-sm-6 col-sm-offset-3 form-horizontal">
-                                {{-- <div class="form-group">
-                                    <div class="col-xs-8">
-                                        <div class="font-s13 font-w600">Online Status</div>
-                                        <div class="font-s13 font-w400 text-muted">Show your status to all</div>
-                                    </div>
-                                    <div class="col-xs-4 text-right">
-                                        <label class="css-input switch switch-sm switch-primary push-10-t">
-                                            <input type="checkbox"><span></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <div class="col-xs-8">
-                                        <div class="font-s13 font-w600">Auto Updates</div>
-                                        <div class="font-s13 font-w400 text-muted">Keep up to date</div>
-                                    </div>
-                                    <div class="col-xs-4 text-right">
-                                        <label class="css-input switch switch-sm switch-primary push-10-t">
-                                            <input type="checkbox"><span></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <hr> --}}
                                 <div class="form-group">
                                     <div class="col-xs-8">
                                         <div class="font-s13 font-w600">Notifications</div>

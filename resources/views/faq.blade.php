@@ -31,32 +31,8 @@
         <link rel="stylesheet" href="{{ URL::to('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
         <link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" id="css-main" href="{{ URL::to('assets/css/oneui.css') }}">
-
-        <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-        <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
-        <!-- END Stylesheets -->
     </head>
     <body>
-        <!-- Page Container -->
-        <!--
-            Available Classes:
-
-            'enable-cookies'             Remembers active color theme between pages (when set through color theme list)
-
-            'sidebar-l'                  Left Sidebar and right Side Overlay
-            'sidebar-r'                  Right Sidebar and left Side Overlay
-            'sidebar-mini'               Mini hoverable Sidebar (> 991px)
-            'sidebar-o'                  Visible Sidebar by default (> 991px)
-            'sidebar-o-xs'               Visible Sidebar by default (< 992px)
-
-            'side-overlay-hover'         Hoverable Side Overlay (> 991px)
-            'side-overlay-o'             Visible Side Overlay by default (> 991px)
-
-            'side-scroll'                Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (> 991px)
-
-            'header-navbar-fixed'        Enables fixed header
-            'header-navbar-transparent'  Enables a transparent header (if also fixed, it will get a solid dark background color on scrolling)
-        -->
         <div id="page-container" class="sidebar-l sidebar-mini sidebar-o side-scroll header-navbar-fixed header-navbar-transparent">
             <!-- Main Container -->
             <main id="main-container">
@@ -148,28 +124,20 @@
                                         <div id="frontend-faq2_q1" class="panel-collapse collapse">
                                             <div class="panel-body">
                                                <p>
-                                                   At the moment, we only deal with two (2) cryptos:
+                                                   At the moment, we only deal with one (1) crypto:
                                                    <ol type="1">
                                                        <li>TBC
                                                             <p>
                                                                 TBC is one of the fastest rising cryptocurrencies in the world and we belive in its potentials and its large market share. We accept the exchange of TBC for naira at its official market price which at the moment is <b>&#8358;{{ number_format(App\Market::where('abbr_name', 'TBC')->first()->naira_value, 2)  }}</b>. 
                                                             </p>
                                                        </li>
-                                                       <li>
-                                                           GRC
-                                                           <p>
-                                                               GRC (Greycoin) is another cryptocurrency which has its root from a Nigerian wealth generation platform, GiversForum. Its rising fast and has great potentials. The current rate is 1GRC = &#8358;1
-                                                           </p>
-                                                       </li>
                                                        <p>
-                                                           These first two are the only accepted cryptos on Crypto2Naira. We will accept the following in the nearest future:
+                                                           This is the only accepted crypto on Crypto2Naira. (UPDATE: We no longer accept GRC.) We will accept the following in the nearest future:
                                                        </p>
                                                        <li>
                                                            ONECOIN
                                                        </li>
-                                                       <li>
-                                                           TWINKAS UNITS
-                                                       </li>
+
                                                        <li>
                                                             BITCOIN
                                                        </li>
@@ -203,7 +171,7 @@
                                                     No special requirement. The only requirement is that you should have a cryptocurrency to trade with, which you can buy from our market if you don't have any.
                                                 </p>
                                                 <p>
-                                                    You also need your TBC wallet ID and GRC email to certify complete transactions.
+                                                    You also need your TBC wallet ID to certify complete transactions.
                                                 </p>
                                             </div>
                                         </div>

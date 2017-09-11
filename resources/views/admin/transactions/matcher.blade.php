@@ -59,9 +59,15 @@
                                                 Split
                                             </a>
                                             @if($t->package_id == 3)
-                                                        <a href="{{ route('transaction.split.three', $t->id) }}" class="btn btn-info btn-sm btn-circle">
-                                                Split 3
-                                            </a>
+                                                <a href="{{ route('transaction.split.three', $t->id) }}" class="btn btn-info btn-sm btn-circle">
+                                                    Split 3
+                                                </a>
+                                            @elseif($t->package_id == 4)
+                                            
+                                                <a href="{{ route('transaction.split.two', $t->id) }}" class="btn btn-info btn-sm btn-circle">
+                                                    Split 2
+                                                </a>
+
                                             @endif
                                         </td>
                                         @endif

@@ -201,7 +201,7 @@
                                         @endif
                                         </td>
                                         <td>
-                                            {{ $t->user->transactions->where('type', 'sell')->where('status', 'pending')->count() }}
+                                            {{ $t->user->transactions->where('type', 'sell')->where('status', 'pending')->count() }}|{{ $t->user->transactions->where('type', 'sell')->where('status', 'matched')->count() }}
                                         </td>
                                         <div class="modal fade" id="{{ $t->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-popin">

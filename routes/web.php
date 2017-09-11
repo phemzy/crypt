@@ -94,9 +94,9 @@ Route::name('admin.dashboard')->get('admin/crypto2naira/dashboard', 'Admin\Admin
 Route::name('admin.transactions.all')->get('admin/crypto2naira/transactions/{type?}', 'Admin\TransactionController@all');
 Route::name('admin.transactions.status')->get('admin/crypto2naira/transaction/{type}/{status}', 'Admin\TransactionController@status');
 
-Route::name('transaction.split')->get('transaction/split/{transaction}', 'Admin\TransactionController@split');
-Route::name('transaction.split.three')->get('transaction/split/three/{transaction}', 'Admin\TransactionController@splitThree');
-Route::name('transaction.split.two')->get('transaction/split/two/{transaction}', 'Admin\TransactionController@splitTwo');
+Route::name('transaction.split')->get('transaction/split/{transaction}/{type}', 'Admin\TransactionController@split');
+Route::name('transaction.split.three')->get('transaction/split/three/{transaction}/{type}', 'Admin\TransactionController@splitThree');
+Route::name('transaction.split.two')->get('transaction/split/two/{transaction}/{type}', 'Admin\TransactionController@splitTwo');
 
 Route::name('matcher')->get('admin/crypto2naira/matcher/create', 'Admin\TransactionController@matcher');
 Route::name('matcher.multi')->get('admin/crypto2naira/multi_matcher/create', 'Admin\TransactionController@multiMatcher');

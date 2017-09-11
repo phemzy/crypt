@@ -55,16 +55,16 @@
                                         <td>{{ $t->created_at->diffForHumans() }}</td>
                                         @if($t->package_id != 5)
                                         <td>
-                                            <a href="{{ route('transaction.split', $t->id) }}" class="btn btn-info btn-sm btn-circle">
+                                            <a href="{{ route('transaction.split', [$t->id, $t->type]) }}" class="btn btn-info btn-sm btn-circle">
                                                 Split
                                             </a>
                                             @if($t->package_id == 3)
-                                                <a href="{{ route('transaction.split.three', $t->id) }}" class="btn btn-info btn-sm btn-circle">
+                                                <a href="{{ route('transaction.split.three', [$t->id, $t->type]) }}" class="btn btn-info btn-sm btn-circle">
                                                     Split 3
                                                 </a>
                                             @elseif($t->package_id == 4)
                                             
-                                                <a href="{{ route('transaction.split.two', $t->id) }}" class="btn btn-info btn-sm btn-circle">
+                                                <a href="{{ route('transaction.split.two',[ $t->id, $t->type]) }}" class="btn btn-info btn-sm btn-circle">
                                                     Split 2
                                                 </a>
 
@@ -89,6 +89,8 @@
                                     <th>Package</th>
                                     <th class="">Amount</th>
                                     <th>Date Created</th>
+                                    <th>Action</th>
+                                    <th>Meta</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,6 +104,27 @@
                                         <td>{{ $t->package->name }}</td>
                                         <td>{{ $t->package->amount }}</td>
                                         <td>{{ $t->created_at->diffForHumans() }}</td>
+                                        <td>
+                                        @if($t->package_id != 5)
+                                            <a href="{{ route('transaction.split', [$t->id, $t->type]) }}" class="btn btn-info btn-sm btn-circle">
+                                                Split
+                                            </a>
+                                            @if($t->package_id == 3)
+                                                <a href="{{ route('transaction.split.three', [$t->id, $t->type]) }}" class="btn btn-info btn-sm btn-circle">
+                                                    Split 3
+                                                </a>
+                                            @elseif($t->package_id == 4)
+                                            
+                                                <a href="{{ route('transaction.split.two',[ $t->id, $t->type]) }}" class="btn btn-info btn-sm btn-circle">
+                                                    Split 2
+                                                </a>
+
+                                            @endif
+                                        @endif
+                                        </td>
+                                        <td>
+                                            {{ $t->user->transactions->where('type', 'sell')->where('status', 'pending')->count() }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -135,8 +135,8 @@
                                         </div>
                                         <td>{{ $t->package->amount }}</td>
                                         <td>{{ $t->created_at->diffForHumans() }}</td>
-                                        @if($t->package_id != 5)
                                         <td>
+                                        @if($t->package_id != 5)
                                             <a href="{{ route('transaction.split', [$t->id, $t->type]) }}" class="btn btn-info btn-sm btn-circle">
                                                 Split
                                             </a>
@@ -151,8 +151,10 @@
                                                 </a>
 
                                             @endif
-                                        </td>
+                                        
                                         @endif
+                                        </td>
+                                        <td><a href="{{ route('delete.transaction', $t->id) }}">Del</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

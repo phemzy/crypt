@@ -32,7 +32,6 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th class="text-center" style="">ID</th>
                                     <th>
                                         User
                                     </th>
@@ -47,8 +46,7 @@
                                         <td>
                                             <input type="radio" name="buyer" value="{{ $t->id }}">
                                         </td>
-                                        <td>{{ $t->id }}</td>
-                                        <td><button class="btn btn-default" data-toggle="modal" data-target="#{{ $t->id }}" type="button">{{$t->user->fullname()}}</button>
+                                        <td><a href="" data-toggle="modal" data-target="#{{ $t->id }}" type="button">{{$t->user->fullname()}}</a>
                                         </td>
                                         <div class="modal fade" id="{{ $t->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-popin">
@@ -166,7 +164,6 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th class="text-center" style="">ID</th>
                                     <th>
                                         User
                                     </th>
@@ -182,8 +179,7 @@
                                         <td>
                                             <input type="radio" name="seller" value="{{ $t->id }}">
                                         </td>
-                                        <td>{{ $t->id }}</td>
-                                        <td><button class="btn btn-default" data-toggle="modal" data-target="#{{ $t->id }}" type="button">{{$t->user->fullname()}}</button></td>
+                                        <td><a href="" data-toggle="modal" data-target="#{{ $t->id }}" type="button">{{$t->user->fullname()}}</a></td>
                                         <td>{{ $t->package->amount }}</td>
                                         <td>{{ $t->created_at->diffForHumans() }}</td>
                                         <td>

@@ -48,7 +48,93 @@
                                             <input type="radio" name="buyer" value="{{ $t->id }}">
                                         </td>
                                         <td>{{ $t->id }}</td>
-                                        <td>{{ $t->user->fullname() }}</td>
+                                        <td><button class="btn btn-default" data-toggle="modal" data-target="#{{ $t->id }}" type="button">{{$t->user->fullname()}}</button>
+                                        </td>
+                                        <div class="modal fade" id="{{ $t->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-popin">
+                                                <div class="modal-content">
+                                                    <div class="block block-themed block-transparent remove-margin-b">
+                                                        <div class="block-header bg-primary-dark">
+                                                            <ul class="block-options">
+                                                                <li>
+                                                                    <button data-dismiss="modal" type="button"><i class="si si-close"></i></button>
+                                                                </li>
+                                                            </ul>
+                                                            <h3 class="block-title">User details</h3>
+                                                        </div>
+                                                        <div class="block-content">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-md-offset-3">
+                                                                    <form class="form-horizontal push-10" onsubmit="return false;">
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <div class="form-material">
+                                                                                    <input class="form-control" type="text" disabled="" id="name" name="name" value="{{ $t->user->fullname() }}">
+                                                                                    <label for="name">Name</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <div class="form-material">
+                                                                                    <input class="form-control" type="text" disabled="" id="name" name="name" value="{{ $t->user->profile->city }}">
+                                                                                    <label for="name">City</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <div class="form-material">
+                                                                                    <input class="form-control" type="text" disabled="" id="name" name="name" value="{{ $t->user->profile->number }}">
+                                                                                    <label for="name">Mobile</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <div class="form-material">
+                                                                                    <input class="form-control" type="text" disabled="" id="name" name="name" value="{{ $t->user->account->bank_name }}">
+                                                                                    <label for="name">Bank Name</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <div class="form-material">
+                                                                                    <input class="form-control" type="text" disabled="" id="name" name="name" value="{{ $t->user->account->account_name  }}">
+                                                                                    <label for="name">Account Name</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <div class="form-material">
+                                                                                    <input class="form-control" type="text" disabled="" id="name" name="name" value="{{ $t->user->account->account_number }}">
+                                                                                    <label for="name">Account Number</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="form-group">
+                                                                            <div class="col-xs-12">
+                                                                                <div class="form-material">
+                                                                                    <input class="form-control" type="text" disabled="" id="name" name="name" value="{{ $t->user->profile->tbc_wallet_id }}">
+                                                                                    <label for="name">TBC WALLET ID</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Close</button>
+                                                        <button class="btn btn-sm btn-primary" type="button" data-dismiss="modal"><i class="fa fa-check"></i> Ok</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <td>{{ $t->package->amount }}</td>
                                         <td>{{ $t->created_at->diffForHumans() }}</td>
                                         @if($t->package_id != 5)
@@ -88,7 +174,6 @@
                                     <th>Date Created</th>
                                     <th>Action</th>
                                     <th>Meta</th>
-                                    <th>User</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,7 +183,7 @@
                                             <input type="radio" name="seller" value="{{ $t->id }}">
                                         </td>
                                         <td>{{ $t->id }}</td>
-                                        <td>{{ $t->user->fullname() }}</td>
+                                        <td><button class="btn btn-default" data-toggle="modal" data-target="#{{ $t->id }}" type="button">{{$t->user->fullname()}}</button></td>
                                         <td>{{ $t->package->amount }}</td>
                                         <td>{{ $t->created_at->diffForHumans() }}</td>
                                         <td>
@@ -121,8 +206,6 @@
                                         </td>
                                         <td>
                                             {{ $t->user->transactions->where('type', 'sell')->where('status', 'pending')->count() }}
-                                        </td>
-                                        <td><button class="btn btn-default" data-toggle="modal" data-target="#{{ $t->id }}" type="button">User</button>
                                         </td>
                                         <div class="modal fade" id="{{ $t->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-popin">
